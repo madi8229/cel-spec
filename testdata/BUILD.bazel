@@ -1,5 +1,6 @@
 # Description:
 #   BUILD file for the CEL conformance libraries and data.
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -21,10 +22,12 @@ proto_library(
     srcs = [
         "test_data.proto",
     ],
-    cc_api_version = 2,
-    java_api_version = 2,
-    js_api_version = 2,
+    # cc_api_version = 2,
+    # java_api_version = 2,
+    # js_api_version = 2,
+    importpath = "github.com/google/cel-spec/testdata/test_data",
     deps = [
+	# TODO: wait until v1beta1 is migrated to get correct build target for it
         "//google/api/expr/v1beta1:value_protos",
     ],
 )
