@@ -1,0 +1,50 @@
+# Description:
+#   BUILD file for the CEL conformance libraries and data.
+
+package(default_visibility = ["//visibility:public"])
+
+licenses(["notice"])  # Apache 2.0
+
+# Generated via:
+#    blaze build third_party/cel/cpp/testutil:test_data_gen &&
+#        blaze-bin/third_party/cel/cpp/testutil/test_data_gen
+filegroup(
+    name = "testdata",
+    srcs = glob([
+        "*.textpb",
+        "*.binarypb",
+    ]),
+)
+
+proto_library(
+    name = "test_data_protos",
+    srcs = [
+        "test_data.proto",
+    ],
+    cc_api_version = 2,
+    java_api_version = 2,
+    js_api_version = 2,
+    deps = [
+        "//google/api/expr/v1beta1:value_protos",
+    ],
+)
+
+go_proto_library(
+    name = "test_data_protos_go_proto",
+    deps = [":test_data_protos"],
+)
+
+java_proto_library(
+    name = "test_data_java_proto",
+    deps = [":test_data_protos"],
+)
+
+java_lite_proto_library(
+    name = "test_data_java_proto_lite",
+    deps = [":test_data_protos"],
+)
+
+jspb_proto_library(
+    name = "test_data_jspb_proto",
+    deps = [":test_data_protos"],
+)
