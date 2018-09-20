@@ -6,6 +6,7 @@ package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # Apache 2.0
 
+# TODO: Check if the generated path is correct.
 # Generated via:
 #    bazel build cel-spec/testutil:test_data_gen &&
 #        bazel-bin/cel-cpp/testutil/test_data_gen 
